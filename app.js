@@ -22,37 +22,53 @@ function desencriptar(text) {
 function displayOutput(text) {
     const outputTextElement = document.getElementById('output-text');
     outputTextElement.style.display = 'block';
-    outputTextElement.textContent = text;
+    outputTextElement.value = text;
     document.getElementById('copy-btn').style.display = 'block';
 }
 
-// Añade un evento de clic al botón de encriptar
+// Validación para solo aceptar letras minúsculas y espacios, sin números ni acentos
+function validarTexto(text) {
+    const regex = /^[a-z\s]+$/;
+    return regex.test(text);
+}
+
+// Evento para encriptar texto
 document.getElementById('encrypt-btn').addEventListener('click', function() {
     const inputText = document.getElementById('input-text').value;
+    const errorMessage = document.getElementById('error-message');
     const noImagen = document.querySelector('.mensaje');
     noImagen.style.backgroundImage = 'none';
     document.querySelector('.mensaje__final').style.display = 'none';
     document.querySelector('.mensaje__salida').style.display = 'none';
-    if (inputText) {
+
+    if (validarTexto(inputText)) {
         const encryptedText = encriptar(inputText);
         displayOutput(encryptedText);
+        errorMessage.textContent = "";
+    } else {
+        errorMessage.textContent = "Por favor, ingresa solo letras minúsculas sin acentos y espacios.";
     }
 });
 
-// Añade un evento de clic al botón de desencriptar
+// Evento para desencriptar texto
 document.getElementById('decrypt-btn').addEventListener('click', function() {
     const inputText = document.getElementById('input-text').value;
+    const errorMessage = document.getElementById('error-message');
     const noImagen = document.querySelector('.mensaje');
     noImagen.style.backgroundImage = 'none';
     document.querySelector('.mensaje__final').style.display = 'none';
     document.querySelector('.mensaje__salida').style.display = 'none';
-    if (inputText) {
+
+    if (validarTexto(inputText)) {
         const decryptedText = desencriptar(inputText);
         displayOutput(decryptedText);
+        errorMessage.textContent = "";
+    } else {
+        errorMessage.textContent = "Por favor, ingresa solo letras minúsculas sin acentos y espacios.";
     }
 });
 
-// Añade un evento de clic al botón de copiar
+// Evento para copiar texto
 document.getElementById('copy-btn').addEventListener('click', function() {
     const outputText = document.getElementById('output-text').value;
     navigator.clipboard.writeText(outputText).then(function() {

@@ -88,6 +88,20 @@ main {
     display: block;
 }
 
+.aviso {
+    position: absolute;
+    top: 300px;
+    left: 10px;
+    width: calc(100% - 20px);
+    text-align: center;
+    background-color: white; /* Fondo semi-transparente */
+    width: calc(100% - 20px);
+    z-index: 1;  
+    font-size: 26px;
+    padding: 10px;
+    
+}
+
 .mensaje {
     background: white;
     background-image: url(./imagenes/Muñeco.png);
