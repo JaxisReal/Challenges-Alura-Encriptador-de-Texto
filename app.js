@@ -42,6 +42,10 @@ document.getElementById('encrypt-btn').addEventListener('click', function() {
 // Añade un evento de clic al botón de desencriptar
 document.getElementById('decrypt-btn').addEventListener('click', function() {
     const inputText = document.getElementById('input-text').value;
+    const noImagen = document.querySelector('.mensaje');
+    noImagen.style.backgroundImage = 'none';
+    document.querySelector('.mensaje__final').style.display = 'none';
+    document.querySelector('.mensaje__salida').style.display = 'none';
     if (inputText) {
         const decryptedText = desencriptar(inputText);
         displayOutput(decryptedText);
